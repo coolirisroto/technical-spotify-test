@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-
+import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
-//import { logIn } from '../../redux/actions/loginAction';
 import Input from '../../components/ui/input'
 import Button from '../../components/ui/button'
 import MySnackbarContentWrapper from '../../components/ui/snackbarContentWrapper'
 import SnackBar from '../../components/ui/snackbar'
-
+import * as actions from '../../redux/auth/actions'
+import * as queryString from 'query-string';
 class Home extends Component {
 
   constructor(props){
     super(props);
     this.state ={
       search:'',
-      showAlert: false
+      showAlert: false,
     }
+
   }
   handleChangeText = search =>this.setState({search})
 
@@ -24,7 +25,8 @@ class Home extends Component {
       this.setState({showAlert:true})
     }
     else{
-
+      const queryString = `q=${search}`
+      this.props.history.push(`/artists?${queryString}`);
     }
   }
   handleClose = (event, reason) => {
@@ -32,8 +34,24 @@ class Home extends Component {
       return;
     }
     this.setState({showAlert:false})
-  };  
+  };
+
+  componentDidMount(){
+    const {location}  =this.props;
+    if(location.hash){
+      const parsed = queryString.parse(location.hash);
+      if(parsed){
+        this.props.saveAccessToken(parsed)
+      }
+    }
+    else
+    {
+      this.props.redirectAuthUrl()
+    }
+  }
+
   render() {
+
     return (
       <div>
       <SnackBar
@@ -70,4 +88,14 @@ class Home extends Component {
 const mapStateToProps = state => ({
 
 });
-export default connect(mapStateToProps, {  })(Home);
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    redirectAuthUrl: actions.redirectAuthUrl,
+    saveAccessToken: actions.saveAccessToken
+  }, dispatch);
+}
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(Home);

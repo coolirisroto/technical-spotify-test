@@ -12,7 +12,7 @@ const middleware = [thunk, routerMiddleware(history), sagaMiddleware];
 
 const initialState = {
 
-  };
+};
 const store =  createStore(
   createRootReducer(history), 
   initialState,
