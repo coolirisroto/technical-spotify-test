@@ -53,6 +53,7 @@ class Home extends Component {
   render() {
 
     return (
+      <>
       <div>
       <SnackBar
         anchorOrigin={{
@@ -80,11 +81,14 @@ class Home extends Component {
         />
         <Button variant="outlined" color="primary" onClick={this.handleClick} >
           Search
-        </Button>
+        </Button>   
+      </div>
+      <div>
         <Button variant="outlined" color="primary" onClick={e=>this.props.history.push(`/likes`)} >
           Likes
-        </Button>        
+        </Button>             
       </div>
+      </>
     );
   }
 }

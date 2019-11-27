@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../../redux/songs/actions'
 import LikesList from '../../components/likes/likesList'
 import Progress from '../../components/ui/progress'
 
@@ -29,7 +28,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    songsSearch: actions.songsSearch,
   }, dispatch);
 }
 

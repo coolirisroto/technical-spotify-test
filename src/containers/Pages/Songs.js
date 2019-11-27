@@ -18,13 +18,9 @@ class Artists extends Component {
     }
   }
 
-  handleHearItem = (itemSelected)=>{
-    window.open(itemSelected.preview_url, '_blank');
-  };
+  handleHearItem = (itemSelected)=>window.open(itemSelected.preview_url, '_blank');
 
-  handleLikeItem = (itemSelected)=>{
-    this.props.likeSong(itemSelected)
-  };
+  handleLikeItem = (itemSelected)=>this.props.likeSong(itemSelected);
 
   render() {
      
