@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/songs/actions'
-import ArtistList from '../../components/artists/artistList'
+import SongsList from '../../components/songs/songsList'
 import Progress from '../../components/ui/progress'
 
 class Artists extends Component {
@@ -17,7 +17,9 @@ class Artists extends Component {
     }
   }
 
-  handleItemSelected = (itemSelected)=>this.props.history.push(`/artists/${itemSelected.id}/songs`);
+  handleItemSelected = (itemSelected)=>{
+    window.open(itemSelected.preview_url, '_blank');
+  };
 
   render() {
      
@@ -28,8 +30,8 @@ class Artists extends Component {
     }
     return (
       <div>
-          <p>Artists</p>
-          
+          <p>Songs</p>
+          <SongsList data={songs} handleItem={this.handleItemSelected} />
       </div>
     );
   }

@@ -18,7 +18,7 @@ const onSearchRequest = async (artistId, token) =>{
 
 function* searchRequest({ payload }) {
   //const { searchText, pageToken } = payload;
-  let token = yield select(getAccessToken); // <-- get the project
+  let token = yield select(getAccessToken); // <-- get the token
   try {
     const searchResult = yield call(
       onSearchRequest,

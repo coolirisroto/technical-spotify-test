@@ -8,7 +8,7 @@ import rootSaga from '../redux/sagas';
 export const history = createBrowserHistory()
 const sagaMiddleware = createSagaMiddleware()
 
-const middleware = [thunk, routerMiddleware(history), sagaMiddleware];
+const middleware = [ thunk, routerMiddleware(history), sagaMiddleware];
 
 const initialState = {
 
