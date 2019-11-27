@@ -1,18 +1,23 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import HearingIcon from '@material-ui/icons/Hearing';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
-const SongBox = (props)=>{
-    console.log(props.item)
-    const {name, album, preview_url} = props.item;
-    const image = album.images[0].url
-  return(
+export default class SongBox extends Component {
+
+    render() {
+    /* console.log(props.item) */
+    const {name, album, liked} = this.props.item;
+    const image = album.images.length>0 ? album.images[0].url: "";
+    const _liked = liked ? <FavoriteIcon />: <FavoriteBorderIcon onClick={this.props.handleLikeClick}/>;
+    return(
     <>
-    <ListItem alignItems="flex-start" onClick={props.handleClick}  href={preview_url}>
+    <ListItem alignItems="flex-start"  >
         <ListItemAvatar>
             <Avatar alt={name} src={image}/>
         </ListItemAvatar>
@@ -22,9 +27,16 @@ const SongBox = (props)=>{
                 {album.name}
             </React.Fragment>
         }/>
+        {this.props.showHearIcon && <HearingIcon onClick={this.props.handleHearClick}/>}
+        {_liked}
     </ListItem>
     <Divider variant="inset" component="li" />
     </>
     );
+    }
 }
-export default SongBox;
+
+SongBox.defaultProps = {
+    showHearIcon: true
+};
+  

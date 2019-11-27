@@ -81,6 +81,9 @@ class Home extends Component {
         <Button variant="outlined" color="primary" onClick={this.handleClick} >
           Search
         </Button>
+        <Button variant="outlined" color="primary" onClick={e=>this.props.history.push(`/likes`)} >
+          Likes
+        </Button>        
       </div>
     );
   }

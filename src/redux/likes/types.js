@@ -1,0 +1,1 @@
+export const LIKE_SONG= 'LIKE_SONG'

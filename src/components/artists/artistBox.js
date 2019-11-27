@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
   
 const ArtistBox = (props)=>{
     const {name, images} = props.item;
-    const image = images[0].url
+    const image = images.length>0 ? images[0].url : "";
   return(
     <>
     <ListItem alignItems="flex-start" onClick={props.handleClick}>

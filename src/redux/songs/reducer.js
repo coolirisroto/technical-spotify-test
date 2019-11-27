@@ -3,6 +3,7 @@ import {
     SONGS_SUCCESS_RESULT,
     SONGS_ERROR_RESULT
 } from './types';
+import {LIKE_SONG} from '../likes/types'
 
 
 const initialState = {
@@ -40,5 +41,19 @@ const initialState = {
         };
       default:
         return state;
+
+        case LIKE_SONG:
+            let songs = [...state.result]
+            const likedSong = action.payload;
+            songs = songs.map(song=>{
+              if(song.id === likedSong.id){
+                song.liked = true;
+              }
+              return song
+            });
+            return {
+              ...state,
+              result: songs
+            };        
     }
   }

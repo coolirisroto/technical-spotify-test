@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import List from '@material-ui/core/List';
-import SongBox from './songBox'
+import SongBox from '../songs/songBox'
 
-export default class SongsList extends Component{
+export default class LikesList extends Component{
 
    renderList = ()=>{
         const {data} = this.props;
@@ -12,6 +12,7 @@ export default class SongsList extends Component{
          item={item}
          handleHearClick={event=> this.props.handleHearItem(item)}
          handleLikeClick={event=> this.props.handleLikeItem(item)}
+         showHearIcon={false}
         />)
         return listItems
    }

@@ -53,7 +53,6 @@ const get = async (url, request, customHeaders = null) => {
 const post = async (url, request, customHeaders = null) => {
 
   const response = await api.post(url, request, {headers:customHeaders});
-  console.log(response)
   return response
 };
 
